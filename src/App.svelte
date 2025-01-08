@@ -27,7 +27,7 @@
   })
 </script>
 
-<div class="flex flex-col h-screen h-[100dvh]">
+<div class="flex flex-col h-screen" style="height: 100dvh;">
   <div class="navbar border-b shadow-none z-10">
     <div class="navbar-start">
       <p class="p-2">席替えアプリ</p>
