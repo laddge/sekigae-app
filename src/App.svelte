@@ -2,7 +2,8 @@
   import { onMount } from 'svelte'
   import { seat } from './lib/seat.svelte'
 
-  const idx = 5
+  const seatCount = 64
+  let idx = $state<number>()
   let seed = $state('0')
   let modalOpen = $state(false)
 
@@ -18,7 +19,11 @@
   }
 
   onMount(() => {
-    seat.init(64)
+    const paramIdx = parseInt((new URLSearchParams(location.search)).get('idx') || '')
+    if (0 <= paramIdx && paramIdx <= seatCount) {
+      idx = paramIdx
+    }
+    seat.init(seatCount)
   })
 </script>
 
@@ -32,7 +37,7 @@
     </div>
   </div>
   <div class="grow bg-backgroundSecondary flex justify-center items-center text-xl">
-    席番号: {seat.arr[idx]}
+    席番号: {idx === undefined ? '' : seat.arr[idx] }
     <input class="modal-state" id="modal-1" bind:checked={modalOpen} type="checkbox" />
     <div class="modal">
       <label class="modal-overlay" for="modal-1"></label>
