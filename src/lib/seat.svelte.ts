@@ -3,6 +3,21 @@ import seedrandom from 'seedrandom'
 function createSeat() {
   let arr = $state<number[]>([])
 
+  function load(n: number) {
+    let stored: number[]
+    try {
+      stored = JSON.parse(localStorage.getItem('arr') || '[]')
+      if (Array.isArray(stored) && stored.length === n) {
+        arr = [...stored]
+      } else {
+        throw new Error()
+      }
+    } catch (e) {
+      arr = [...Array(n)].map((_, i) => i)
+      shuffle('0')
+    }
+  }
+
   function shuffle(seed: string) {
     if (arr.length) {
       const newArr = [...arr]
@@ -26,16 +41,20 @@ function createSeat() {
         }
       }
       arr = [...newArr]
+      localStorage.setItem('arr', JSON.stringify(arr))
     }
+  }
+
+  function reset() {
+    arr = [...Array(arr.length)].map((_, i) => i)
+    shuffle('0')
   }
   
   return {
     get arr() { return arr },
-    init: (n: number) => {
-      arr = [...Array(n)].map((_, i) => i)
-      shuffle('0')
-    },
+    load,
     shuffle,
+    reset,
   }
 }
 

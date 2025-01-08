@@ -23,7 +23,7 @@
     if (0 <= paramIdx && paramIdx <= seatCount) {
       idx = paramIdx
     }
-    seat.init(seatCount)
+    seat.load(seatCount)
   })
 </script>
 
@@ -36,7 +36,7 @@
       <div class="dropdown">
         <label><button class="p-2">idx: {idx}</button></label>
         <div class="dropdown-menu p-2">
-          <button onclick={() => seat.init(seatCount)} class="btn btn-error btn-sm">リセット</button>
+          <button onclick={seat.reset} class="btn btn-error btn-sm">リセット</button>
         </div>
       </div>
     </div>
