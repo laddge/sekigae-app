@@ -33,7 +33,12 @@
       <p class="p-2">席替えアプリ</p>
     </div>
     <div class="navbar-end">
-      <p class="p-2">idx: {idx}</p>
+      <div class="dropdown">
+        <label><button class="p-2">idx: {idx}</button></label>
+        <div class="dropdown-menu p-2">
+          <button onclick={() => seat.init(seatCount)} class="btn btn-error btn-sm">リセット</button>
+        </div>
+      </div>
     </div>
   </div>
   <div class="grow bg-backgroundSecondary flex justify-center items-center text-xl">
