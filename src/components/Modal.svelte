@@ -13,8 +13,10 @@
 
   $effect(() => {
     if (!modalOpen) {
-      seed = '0'
-      oldSeatId = undefined
+      setTimeout(() => {
+        seed = '0'
+        oldSeatId = undefined
+      }, 500)
     }
   })
 
