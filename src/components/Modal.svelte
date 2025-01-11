@@ -41,6 +41,7 @@
         <option value="6">6</option>
       </select>
     {:else}
+      <h2 class="text-xl">移動</h2>
       <Zasekihyo seatId={seat.arr[idx]} {oldSeatId} />
     {/if}
     <div class="flex gap-3">
