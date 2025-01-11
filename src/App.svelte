@@ -2,7 +2,7 @@
   import { onMount } from 'svelte'
   import { seat } from './lib/seat.svelte'
 
-  const seatCount = 64
+  const seatCount = 63
   let idx = $state<number>()
   let seed = $state('0')
   let modalOpen = $state(false)
