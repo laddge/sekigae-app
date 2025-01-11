@@ -1,6 +1,7 @@
 <script lang="ts">
   import bgImg from '../assets/zasekihyo.png'
   import config from '../zaseki.json'
+  import Arrow from './Arrow.svelte'
 
   interface Props {
     seatId: number
@@ -20,6 +21,7 @@
   {:else}
     <div class="border-[3px] border-red-500 absolute rounded-sm animate-blink" style={`left: ${getAxis(seatId, 0)}%; top: ${getAxis(seatId, 1)}%; width: ${getAxis(seatId, 2) - getAxis(seatId, 0)}%; height: ${getAxis(seatId, 3) - getAxis(seatId, 1)}%;`}></div>
     <div class="border-[3px] border-red-500 border-dashed absolute rounded-sm" style={`left: ${getAxis(oldSeatId, 0)}%; top: ${getAxis(oldSeatId, 1)}%; width: ${getAxis(oldSeatId, 2) - getAxis(oldSeatId, 0)}%; height: ${getAxis(oldSeatId, 3) - getAxis(oldSeatId, 1)}%;`}></div>
+    <Arrow axis={[config.seats[oldSeatId], config.seats[seatId]]} />
   {/if}
 </div>
 
