@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import { seat } from './lib/seat.svelte'
+  import Zasekihyo from './components/Zasekihyo.svelte'
 
   const seatCount = 63
   let idx = $state<number>()
@@ -42,7 +43,9 @@
     </div>
   </div>
   <div class="grow bg-backgroundSecondary flex justify-center items-center text-xl">
-    席番号: {idx === undefined ? '' : seat.arr[idx] }
+    {#if idx !== undefined}
+      <Zasekihyo seatId={seat.arr[idx]} />
+    {/if}
     <input class="modal-state" id="modal-1" bind:checked={modalOpen} type="checkbox" />
     <div class="modal">
       <label class="modal-overlay" for="modal-1"></label>
