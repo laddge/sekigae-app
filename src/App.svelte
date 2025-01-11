@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import { seat } from './lib/seat.svelte'
+  import { counter, seat } from './lib/seat.svelte'
   import Zasekihyo from './components/Zasekihyo.svelte'
   import Modal from './components/Modal.svelte'
 
@@ -24,7 +24,7 @@
     </div>
     <div class="navbar-end">
       <div class="dropdown">
-        <label><button class="p-2">idx: {idx}</button></label>
+        <label><button class="btn btn-solid-secondary btn-sm">席替え回数: {counter.count}</button></label>
         <div class="dropdown-menu p-2">
           <button onclick={seat.reset} class="btn btn-error btn-sm">リセット</button>
         </div>

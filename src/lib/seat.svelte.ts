@@ -1,5 +1,19 @@
 import seedrandom from 'seedrandom'
 
+function createCounter() {
+  let count = $state(0)
+
+  return {
+    get count() { return count },
+    set count(c) {
+      count = c
+      localStorage.setItem('count', String(count))
+    }
+  }
+}
+
+export let counter = createCounter()
+
 function createSeat() {
   let arr = $state<number[]>([])
 
@@ -7,7 +21,8 @@ function createSeat() {
     let stored: number[]
     try {
       stored = JSON.parse(localStorage.getItem('arr') || '[]')
-      if (Array.isArray(stored) && stored.length === n) {
+      counter.count = parseInt(localStorage.getItem('count') || '')
+      if (Array.isArray(stored) && stored.length === n && counter.count > 0) {
         arr = [...stored]
       } else {
         throw new Error()
@@ -15,6 +30,7 @@ function createSeat() {
     } catch (e) {
       arr = [...Array(n)].map((_, i) => i)
       shuffle('0')
+      counter.count = 0
     }
   }
 
@@ -42,12 +58,14 @@ function createSeat() {
       }
       arr = [...newArr]
       localStorage.setItem('arr', JSON.stringify(arr))
+      counter.count += 1
     }
   }
 
   function reset() {
     arr = [...Array(arr.length)].map((_, i) => i)
     shuffle('0')
+    counter.count = 0
   }
   
   return {
