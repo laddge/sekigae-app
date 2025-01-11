@@ -20,7 +20,7 @@
 
   onMount(() => {
     const paramIdx = parseInt((new URLSearchParams(location.search)).get('idx') || '')
-    if (0 <= paramIdx && paramIdx <= seatCount) {
+    if (0 <= paramIdx && paramIdx < seatCount) {
       idx = paramIdx
     }
     seat.load(seatCount)
