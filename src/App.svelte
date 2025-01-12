@@ -3,17 +3,17 @@
   import { counter, seat } from './lib/seat.svelte'
   import Zasekihyo from './components/Zasekihyo.svelte'
   import Modal from './components/Modal.svelte'
+  import config from './zaseki.json'
 
-  const seatCount = 63
   let idx = $state<number>()
   let modalOpen = $state(false)
 
   onMount(() => {
     const paramIdx = parseInt((new URLSearchParams(location.search)).get('idx') || '')
-    if (0 <= paramIdx && paramIdx < seatCount) {
+    if (0 <= paramIdx && paramIdx < config.seats.length) {
       idx = paramIdx
     }
-    seat.load(seatCount)
+    seat.load(config.seats.length)
   })
 </script>
 
